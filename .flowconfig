@@ -1,0 +1,13 @@
+[ignore]
+
+[include]
+
+[libs]
+
+[lints]
+; deprecated-utility=false
+
+[options]
+esproposal.optional_chaining=enable
+
+[strict]

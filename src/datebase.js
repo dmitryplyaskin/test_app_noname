@@ -1,6 +1,11 @@
-import mongoose from 'mongoose'
-import { DATE_BASE } from '../config'
-mongoose.connect(DATE_BASE, { useNewUrlParser: true }, err => {
+import mng from 'mongoose'
+import { ENV } from '../config'
+
+const mongoose = mng
+mongoose.connect(ENV.DATE_BASE, { useNewUrlParser: true }, err => {
 	console.log(err)
 })
-module.exports = mongoose
+
+const Schema = mongoose.Schema
+const model = mongoose.model
+export { mongoose, Schema, model }

@@ -1,8 +1,8 @@
-const { gql, ForbiddenError, UserInputError } = require('apollo-server-express')
-const User = require('./schema')
-const { compare } = require('../../bcript')
-const passport = require('passport')
-const LocalStrategy = require('passport-local')
+import { gql, ForbiddenError, UserInputError } from 'apollo-server-express'
+import User from './schema'
+import { compare } from '../../bcript'
+import passport from 'passport'
+import LocalStrategy from 'passport-local'
 
 const typeDefs = gql`
 	type Query {
@@ -33,4 +33,4 @@ const resolvers = {
 	},
 }
 
-module.exports = { resolvers, typeDefs }
+export { resolvers, typeDefs }

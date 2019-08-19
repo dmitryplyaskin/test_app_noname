@@ -1,6 +1,6 @@
-const { gql, ForbiddenError, UserInputError } = require('apollo-server-express')
-const User = require('./schema')
-const { hash } = require('../../bcript')
+import { gql, ForbiddenError, UserInputError } from 'apollo-server-express'
+import User from './schema'
+import { hash } from '../../bcript'
 
 const typeDefs = gql`
 	type Mutation {
@@ -35,4 +35,4 @@ const resolvers = {
 	},
 }
 
-module.exports = { resolvers, typeDefs }
+export { resolvers, typeDefs }

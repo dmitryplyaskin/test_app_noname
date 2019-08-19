@@ -1,14 +1,13 @@
-const express = require('express')
-const path = require('path')
-const cookieParser = require('cookie-parser')
-const logger = require('morgan')
-const query = require('qs-middleware')
-const indexRouter = require('./routes/index')
-const gqServer = require('./graphql')
-const passport = require('passport')
-const LocalStrategy = require('passport-local')
-const debug = require('debug')('time-checker:server')
-const http = require('http')
+import express from 'express'
+import path from 'path'
+import cookieParser from 'cookie-parser'
+import logger from 'morgan'
+import query from 'qs-middleware'
+import indexRouter from './routes/index'
+import { gqServer } from './graphql'
+import passport from 'passport'
+import LocalStrategy from 'passport-local'
+import http from 'http'
 
 const app = express()
 const port = process.env.PORT || '3001'
@@ -19,7 +18,6 @@ app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
 app.use(cookieParser())
 app.use(express.static(path.join(__dirname, 'public')))
-console.log(process.env)
 
 passport.use(
 	new LocalStrategy(function(username, password, done) {
@@ -51,5 +49,3 @@ gqServer.applyMiddleware({ app, gqlPath })
 
 const server = http.createServer(app)
 server.listen(port)
-
-module.exports = app

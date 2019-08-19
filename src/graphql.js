@@ -1,9 +1,9 @@
-const { ApolloServer } = require('apollo-server-express')
-const { buildFederatedSchema } = require('@apollo/federation')
-const passport = require('passport')
-const cookieParser = require('cookie-parser')
+import { ApolloServer } from 'apollo-server-express'
+import { buildFederatedSchema } from '@apollo/federation'
+import passport from 'passport'
+import cookieParser from 'cookie-parser'
 
-const auth = require('./features/auth')
+import { signUp, logIn } from './features/auth'
 
 const cp = cookieParser()
 const addCookies = (req, res) =>
@@ -11,8 +11,8 @@ const addCookies = (req, res) =>
 		cp(req, res, resolve)
 	})
 
-const server = new ApolloServer({
-	schema: buildFederatedSchema([auth.signUp, auth.logIn]),
+export const gqServer = new ApolloServer({
+	schema: buildFederatedSchema([signUp, logIn]),
 	context: async ({ req, res }) => {
 		const auth = await passport.authenticate(
 			'local',
@@ -25,5 +25,3 @@ const server = new ApolloServer({
 		return { auth: auth(req, res) }
 	},
 })
-
-module.exports = server

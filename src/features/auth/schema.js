@@ -1,10 +1,9 @@
-const { Schema, model } = require('../../datebase')
-const UserSchema = new Schema({
+import { Schema, model } from '../../datebase'
+
+const UserSchema = Schema({
 	email: { type: String },
 	password: { type: String, min: 6, index: true },
 	date: { type: Date, default: Date.now() },
 })
 
-const User = model('User', UserSchema)
-
-module.exports = User
+export const User = model('User', UserSchema)

@@ -1,5 +1,8 @@
-const dotenv = require('dotenv')
+import dotenv from 'dotenv'
 dotenv.config()
-module.exports = {
-	DATE_BASE: process.env.DATE_BASE,
+
+const ENV = {
+	DATE_BASE: process.env.DATA_BASE,
 }
+
+export { ENV }

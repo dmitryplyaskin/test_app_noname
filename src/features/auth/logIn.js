@@ -1,8 +1,8 @@
 import { gql, ForbiddenError, UserInputError } from 'apollo-server-express'
-import User from './schema'
+import { User } from './schema'
 import { compare } from '../../bcript'
-import passport from 'passport'
 import LocalStrategy from 'passport-local'
+import { passport } from '../../passport'
 
 const typeDefs = gql`
 	type Query {
@@ -12,7 +12,7 @@ const typeDefs = gql`
 
 const resolvers = {
 	Query: {
-		logIn: async (parent, { email, password }, context, info) => {
+		logIn: async (parent, { email, password }, { req, res }) => {
 			const user = await User.where({ email }).findOne(err => {
 				if (err) throw new ForbiddenError('Sorry some error')
 			})
@@ -20,12 +20,18 @@ const resolvers = {
 				throw new UserInputError('User not found')
 			}
 
-			const isLogin = await compare(password, user.password)
-			if (!isLogin) {
+			const isEqual = await compare(password, user.password)
+			if (!isEqual) {
 				throw new UserInputError('Password error')
 			}
-			const a = await passport
-			console.log('111', passport)
+			const auth = await passport.authenticate(
+				'local',
+				{ session: true, password, username: email },
+				(err, user) => {
+					if (err) console.log(err)
+					return user
+				}
+			)(req, res)
 			return {
 				token: 'you awesome token',
 			}

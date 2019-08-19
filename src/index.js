@@ -5,9 +5,9 @@ import logger from 'morgan'
 import query from 'qs-middleware'
 import indexRouter from './routes/index'
 import { gqServer } from './graphql'
-import passport from 'passport'
-import LocalStrategy from 'passport-local'
+
 import http from 'http'
+import { passport } from './passport'
 
 const app = express()
 const port = process.env.PORT || '3001'
@@ -18,25 +18,6 @@ app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
 app.use(cookieParser())
 app.use(express.static(path.join(__dirname, 'public')))
-
-passport.use(
-	new LocalStrategy(function(username, password, done) {
-		console.log(username, password)
-		User.findOne({ username: username }, function(err, user) {
-			console.log(user)
-			if (err) {
-				return done(err)
-			}
-			if (!user) {
-				return done(null, false)
-			}
-			if (!user.verifyPassword(password)) {
-				return done(null, false)
-			}
-			return done(null, user)
-		})
-	})
-)
 
 app.use(passport.initialize())
 app.use(passport.session())

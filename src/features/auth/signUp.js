@@ -1,5 +1,5 @@
 import { gql, ForbiddenError, UserInputError } from 'apollo-server-express'
-import User from './schema'
+import { User } from './schema'
 import { hash } from '../../bcript'
 
 const typeDefs = gql`
@@ -25,9 +25,9 @@ const resolvers = {
 			if (password.length < 6) {
 				throw new UserInputError('Password no less 6 ')
 			}
-			const pass = await hash(password)
-			password = pass
-			await User.create({ email, password }, (err, user) => {
+
+			const hashedPassword = await hash(password)
+			await User.create({ email, password: hashedPassword }, (err, user) => {
 				if (err) throw new ForbiddenError('Sorry some error')
 			})
 			return { token: 'sadsad' }

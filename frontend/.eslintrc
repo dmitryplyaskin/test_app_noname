@@ -1,19 +1,19 @@
 {
 	"extends": [
 		"react-app",
-		"plugin:flowtype/recommended",
-		"plugin:flowtype-errors/recommended"
+		// "plugin:flowtype/recommended",
+		// "plugin:flowtype-errors/recommended"
 	],
 	"plugins": [
-		"flowtype",
-		"react-hooks",
+		// "flowtype",
+		// "react-hooks",
 		"prettier"
 	],
 	"rules": {
 		"prettier/prettier": "error",
-		"flowtype/define-flow-type": 1,
-		"flowtype/use-flow-type": 1,
-		"react-hooks/rules-of-hooks": "error",
+		// "flowtype/define-flow-type": 1,
+		// "flowtype/use-flow-type": 1,
+		// "react-hooks/rules-of-hooks": "error",
 		"no-var": "error",
 		"no-const-assign": "error",
 		"prefer-const": "error",

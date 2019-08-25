@@ -20,7 +20,7 @@ const validationSchema = Yup.object().shape({
 })
 
 export const LogIn = () => {
-	const onSubmit = () => {}
+	const onSubmit = data => {}
 
 	return (
 		<Wrapper>

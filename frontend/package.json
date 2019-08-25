@@ -7,7 +7,12 @@
     "start": "npx parcel src/index.html --no-cache -p 3000 -op",
     "build": "npx parcel build -d dist --no-autoinstall --public-url /try src/index.html"
   },
+  "proxy": {
+    "path": "service",
+    "host": "http://scooterlabs.com/echo"
+  },
   "dependencies": {
+    "@babel/plugin-transform-runtime": "^7.5.5",
     "effector": "^20.1.2",
     "effector-react": "^20.3.0",
     "formik": "^1.5.8",

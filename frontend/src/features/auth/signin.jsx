@@ -24,7 +24,26 @@ const validationSchema = Yup.object().shape({
 })
 
 export const SignIn = () => {
-	const onSubmit = () => {}
+	const onSubmit = async data => {
+		const res = fetch('http://127.0.0.1:3001/graphql', {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json',
+				Accept: 'application/json',
+			},
+			body: JSON.stringify({
+				query: `
+					mutation SignUp ($email: String!, $password: String!) {
+						signUp(email: $email, password: $password) {
+							token
+						}
+					}
+				`,
+				variables: { ...data },
+			}),
+		}).then(x => x.json())
+		console.log(res)
+	}
 
 	return (
 		<Wrapper>

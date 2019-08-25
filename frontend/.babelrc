@@ -10,7 +10,8 @@
     ],
     "effector/babel-plugin",
     "effector/babel-plugin-react",
-    "babel-plugin-styled-components"
+    "babel-plugin-styled-components",
+    "@babel/plugin-transform-runtime"
   ],
   "presets": [
     "@babel/preset-flow",
@@ -18,11 +19,8 @@
     [
       "@babel/preset-env",
       {
-        "modules": false,
-        "shippedProposals": true,
-        "loose": true,
-        "useBuiltIns": false,
         "targets": {
+          "node": "current",
           "browsers": [
             "last 2 Chrome versions",
             "last 2 Firefox versions",

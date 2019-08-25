@@ -1,0 +1,46 @@
+{
+	"extends": [
+		"react-app",
+		"plugin:flowtype/recommended",
+		"plugin:flowtype-errors/recommended"
+	],
+	"plugins": [
+		"flowtype",
+		"react-hooks",
+		"prettier"
+	],
+	"rules": {
+		"prettier/prettier": "error",
+		"flowtype/define-flow-type": 1,
+		"flowtype/use-flow-type": 1,
+		"react-hooks/rules-of-hooks": "error",
+		"no-var": "error",
+		"no-const-assign": "error",
+		"prefer-const": "error",
+		"no-new-object": "error",
+		"object-shorthand": "error",
+		"no-array-constructor": "error",
+		"array-callback-return": "error",
+		"prefer-destructuring": [
+			"error",
+			{
+				"object": true,
+				"array": true
+			}
+		],
+		"prefer-template": "error",
+		"no-eval": "error",
+		"no-useless-escape": "error",
+		"no-loop-func": "error",
+		"no-new-func": "error",
+		"prefer-rest-params": "error",
+		"no-param-reassign": "error",
+		"prefer-spread": "error",
+		"prefer-arrow-callback": "error",
+		"arrow-spacing": "error",
+		"arrow-body-style": [
+			"error",
+			"as-needed"
+		]
+	}
+}

@@ -1,0 +1,18 @@
+[ignore]
+<PROJECT_ROOT>/node_modules/react-final-form/dist/types.js.flow
+[include]
+
+[libs]
+
+[lints]
+; deprecated-utility=false
+
+[options]
+esproposal.optional_chaining=enable
+module.name_mapper='^@lib' ->'<PROJECT_ROOT>/src/lib'
+module.name_mapper='^@features' ->'<PROJECT_ROOT>/src/features'
+module.name_mapper='^@ui' ->'<PROJECT_ROOT>/src/ui'
+module.name_mapper='^@core' ->'<PROJECT_ROOT>/src/core'
+module.name_mapper='^@types' ->'<PROJECT_ROOT>/flow-typed/npm'
+
+[strict]

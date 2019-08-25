@@ -17,20 +17,25 @@ const validationSchema = Yup.object().shape({
 	password: Yup.string()
 		.min(6, 'Пароль должен быть не менее 6 символов')
 		.required('Введите пароль'),
+	passwordConfirmation: Yup.string().oneOf(
+		[Yup.ref('password'), null],
+		'Пароль должен совпадать'
+	),
 })
 
-export const LogIn = () => {
+export const SignIn = () => {
 	const onSubmit = () => {}
 
 	return (
 		<Wrapper>
 			<Logo marginBottom />
-			<Header>авторизация</Header>
+			<Header>Регистрация</Header>
 			<Formik
 				onSubmit={onSubmit}
 				initialValues={{
 					email: '',
 					password: '',
+					passwordConfirmation: '',
 				}}
 				validationSchema={validationSchema}
 			>
@@ -38,17 +43,23 @@ export const LogIn = () => {
 					<Form onSubmit={handleSubmit}>
 						<Field name="email" placeholder={'Email'} component={Input} />
 						<Field
-							name="password"
 							type="password"
+							name="password"
 							placeholder={'Пароль'}
 							component={Input}
 						/>
-						<Button>Войти</Button>
+						<Field
+							type="password"
+							name="passwordConfirmation"
+							placeholder={'Пароль еще раз'}
+							component={Input}
+						/>
+						<Button>Создать аккаунт</Button>
 					</Form>
 				)}
 			</Formik>
 			<LinksWrapper>
-				<Link to="/signin">Регистрация</Link>
+				<Link to="/login">Есть аккаунт? Авторизация</Link>
 			</LinksWrapper>
 		</Wrapper>
 	)

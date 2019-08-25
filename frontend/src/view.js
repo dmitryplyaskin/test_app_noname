@@ -1,6 +1,16 @@
 //@flow
 import React from 'react'
+import { BrowserRouter } from 'react-router-dom'
+import { Auth } from './features/auth'
+import { Global } from './ui/global-styles'
 
 export const View = () => {
-	return <div>wow, i work!</div>
+	return (
+		<>
+			<BrowserRouter>
+				<Auth />
+			</BrowserRouter>
+			<Global />
+		</>
+	)
 }

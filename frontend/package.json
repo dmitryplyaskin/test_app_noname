@@ -36,6 +36,6 @@
     "eslint": "^6.2.2",
     "flow-typed": "^2.6.1",
     "parcel-bundler": "^1.12.3",
-    "terser": "^4.2.1"
+    "terser": "^4.8.1"
   }
 }
